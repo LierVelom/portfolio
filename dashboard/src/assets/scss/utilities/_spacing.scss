@@ -1,0 +1,28 @@
+@each $breakpoint, $size in $breakpoints {
+    @media only screen and (min-width: $size) {
+        
+        @each $name, $value in $spacing {
+            .m#{get-breakpoint-name($breakpoint)}--#{$name} {
+                margin: $value;
+            }
+
+            .p#{get-breakpoint-name($breakpoint)}--#{$name} {
+                padding: $value;
+            }
+
+            @each $direction, $type in $directions {
+                .m#{$direction + get-breakpoint-name($breakpoint)}--#{$name} {
+                    @each $var in $type {
+                        margin-#{$var}: $value;
+                    }
+                }
+                .p#{$direction + get-breakpoint-name($breakpoint)}--#{$name} {
+                    @each $var in $type {
+                        padding-#{$var}: $value;
+                    }
+                }
+            }
+        }
+
+    }
+}

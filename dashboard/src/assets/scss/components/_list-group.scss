@@ -1,0 +1,38 @@
+// Theme customize
+:root[data-theme="light"] { 
+    --list-group-border-color: #{$gray-200};
+}
+:root[data-theme="dark"] { 
+    --list-group-border-color: #{$gray-700};
+}
+
+.list-group {
+    
+    --list-group-vertical-spacing: .75rem;
+    --list-group-horizontal-spacing: 1rem;
+
+    --list-group-border-width: 1px;
+    --list-group-border-style: solid;
+
+    border-radius: var(--border-radius);
+
+    &.list-group--border, &.list-group--flush {
+       
+        .list-group__item:nth-child(n+2) {
+            border-top: var(--list-group-border-width) var(--list-group-border-style) var(--list-group-border-color);
+        }
+
+    }
+
+    &.list-group--border {
+        border: var(--list-group-border-width) var(--list-group-border-style) var(--list-group-border-color);
+    }
+    &.list-group--flush {
+        border-width: 0;
+        border-radius: 0;
+    }
+
+    .list-group__item {
+        padding: var(--list-group-vertical-spacing) var(--list-group-horizontal-spacing);
+    }
+}

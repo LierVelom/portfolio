@@ -1,0 +1,27 @@
+@each $breakpoint, $size in $breakpoints {
+    @media only screen and (min-width: $size) {
+        
+        @each $name, $value in $position {
+            .position#{get-breakpoint-name($breakpoint)}--#{$name} {
+                position: $value;
+            }
+        }
+
+        .t#{get-breakpoint-name($breakpoint)}--0 {
+            top: 0;
+        }
+
+        .b#{get-breakpoint-name($breakpoint)}--0 {
+            bottom: 0;
+        }
+
+        .l#{get-breakpoint-name($breakpoint)}--0 {
+            left: 0;
+        }
+
+        .r#{get-breakpoint-name($breakpoint)}--0 {
+            right: 0;
+        }
+
+    }
+}

@@ -1,0 +1,104 @@
+// Theme customize
+:root[data-theme="light"] { 
+	.pagination {
+		--pagination-border-color: #{$gray-200};
+	}
+}
+:root[data-theme="dark"] { 
+	.pagination {
+		--pagination-border-color: #{$gray-700};
+	}
+}
+
+.pagination {
+	
+	--pagination-vertical-spacing: .25rem;
+	--pagination-horizontal-spacing: .75rem;
+	
+	--pagination-color: --text-color;
+	--pagination-border-width: 1px;
+	--pagination-border-style: solid;
+	--pagination-border-radius: .25rem;	
+	--pagination-border-rounded-circle: 5rem;
+	--pagination-items-spacing: .5rem;
+
+    --pagination-transition: all var(--transition);
+
+	@each $theme, $color in $theme-colors {
+
+		&.pagination--#{$theme} {
+			--pagination-background-color: transparent;
+            --pagination-active-color: #{get-text-color($theme)};
+            --pagination-hover-color: #{$color};
+			--pagination-hover-background-color: #{rgba($color, .15)};
+			--pagination-hover-border-color: #{$color};
+            --pagination-active-background-color: #{$color};
+            --pagination-active-border-color: #{$color};
+		}
+
+		&.pagination--translucent-#{$theme} {
+			--pagination-background-color: #{rgba($color, .1)};
+			--pagination-color: #{$color};
+            --pagination-hover-color: #{$color};
+			--pagination-active-color: #{get-text-color($theme)};
+			--pagination-hover-background-color: #{rgba($color, .2)};
+			--pagination-hover-border-color: #{$color};
+            --pagination-active-background-color: #{$color};
+            --pagination-active-border-color: #{$color};
+
+			--pagination-border-width: 0;
+		}
+	}
+
+	display: inline-flex;
+	position: relative;
+    padding: 0;
+
+    >li {
+        list-style-type: none;
+    }
+
+	.pagination__item { 
+		
+		text-decoration: none;
+		background-color: var(--pagination-background-color);
+		color: var(--pagination-color); 
+		padding: var(--pagination-vertical-spacing) var(--pagination-horizontal-spacing);
+		margin-left: var(--pagination-items-spacing);
+		border: var(--pagination-border-width) var(--pagination-border-style) var(--pagination-border-color);
+		border-radius: var(--pagination-border-radius);
+        transition: var(--pagination-transition);
+		
+		&:first-child {
+			margin-left: 0; 
+		}
+
+		&:hover {
+			background-color: var(--pagination-hover-background-color);
+			color: var(--pagination-hover-color); 
+			border-color: var(--pagination-hover-border-color);
+		}
+
+        &.active {
+            background-color: var(--pagination-active-background-color);
+			color: var(--pagination-active-color); 
+			border-color: var(--pagination-active-border-color);
+        }
+
+	}
+
+
+	&.pagination--rounded-pill {
+		
+		.pagination__item {
+			border-radius: var(--pagination-border-rounded-circle) ;
+		}
+
+        &.active {
+            background-color: var(--pagination-active-background-color);
+			color: var(--pagination-active-color); 
+			border-color: var(--pagination-active-border-color);
+        }
+
+	}
+}

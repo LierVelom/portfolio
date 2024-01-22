@@ -1,0 +1,36 @@
+.border {
+    border-width: 1px;
+    border-style: solid;
+    border-color: $gray-200;
+}
+
+@each $name, $value in $border-widths {
+
+    .border--#{$name} {
+        border: $value solid $gray-200;
+    }
+
+    @each $direction, $type in $directions {
+        .border__#{$direction}--#{$name} {
+            @each $var in $type {
+                border-#{$var}: $value 1px solid $gray-200;
+            }
+        }
+    }
+
+}
+
+@each $color, $value in $theme-colors {
+	.border--#{$color} {
+		border-color: #{$value} ;
+	}
+
+    @each $direction, $type in $directions {
+        .border__#{$direction}--#{$color} {
+            @each $var in $type {
+                border-#{$var}-color: $value;
+            }
+        }
+    }
+} 
+
